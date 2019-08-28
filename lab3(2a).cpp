@@ -61,9 +61,4 @@ void merge_array(int a, int b, int c, int d) {
 
     for (i = a, j = 0; i <= d; i++, j++)
         arr[i] = t[j];
-
-        t[k++] = arr[j++];
-
-    for (i = a, j = 0; i <= d; i++, j++)
-        arr[i] = t[j];
 }
