@@ -1,22 +1,21 @@
 #include<iostream> 
 #include <list> 
 using namespace std; 
-  
 class Graph 
 { 
     int V;    
   
     list<int> *adj; 
   
-    void DFSUtil(int v, bool visited[]); 
+    void dfssearch(int v, bool visited[]); 
 public: 
     Graph(int V);   
     void addEdge(int v, int w); 
-    void connectedComponents(); 
+    void printComponents(); 
 }; 
   
 
-void Graph::connectedComponents() 
+void Graph::printComponents() 
 { 
    
     bool *visited = new bool[V]; 
@@ -28,14 +27,14 @@ void Graph::connectedComponents()
         if (visited[v] == false) 
         { 
             
-            DFSUtil(v, visited); 
+            dfssearch(v, visited); 
   
             cout << "\n"; 
         } 
     } 
 } 
   
-void Graph::DFSUtil(int v, bool visited[]) 
+void Graph::dfssearch(int v, bool visited[]) 
 { 
     
     visited[v] = true; 
@@ -45,7 +44,7 @@ void Graph::DFSUtil(int v, bool visited[])
     list<int>::iterator i; 
     for(i = adj[v].begin(); i != adj[v].end(); ++i) 
         if(!visited[*i]) 
-            DFSUtil(*i, visited); 
+            dfssearch(*i, visited); 
 } 
   
 Graph::Graph(int V) 
@@ -67,11 +66,9 @@ int main()
   
     Graph g(5); 
     g.addEdge(1, 0); 
-    g.addEdge(2, 3); 
+    g.addEdge(1, 2); 
     g.addEdge(3, 4); 
-  
-    cout << "Following are connected components \n"; 
-    g.connectedComponents(); 
-  
-    return 0; 
+    g.printComponents(); 
+	return 0; 
 } 
+
